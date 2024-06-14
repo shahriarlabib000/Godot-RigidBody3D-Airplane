@@ -72,6 +72,20 @@ offset_right = 921.0
 offset_bottom = 153.0
 text = "camera"
 
+[node name="rollLeft" type="TouchScreenButton" parent="ui"]
+position = Vector2(1233, 173)
+scale = Vector2(0.828125, 0.828125)
+texture_normal = ExtResource("1_7eku0")
+texture_pressed = ExtResource("1_7eku0")
+action = "roll_left"
+
+[node name="rollRight" type="TouchScreenButton" parent="ui"]
+position = Vector2(1363, 177)
+scale = Vector2(0.789062, 0.820312)
+texture_normal = ExtResource("1_7eku0")
+texture_pressed = ExtResource("1_7eku0")
+action = "roll_right"
+
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
