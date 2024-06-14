@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4p0rpkt0hybf"]
+
+[ext_resource type="Script" path="res://airplane.gd" id="1_8g6t8"]
+[ext_resource type="PackedScene" uid="uid://b4fm4p0fmllgd" path="res://Airplane.glb" id="1_qf2qa"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l0yls"]
+radius = 1.5
+height = 15.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fr3fx"]
+size = Vector3(4.5, 1, 7)
+
+[node name="Airplane" type="RigidBody3D"]
+gravity_scale = 0.0
+linear_damp = 0.5
+angular_damp = 1.0
+script = ExtResource("1_8g6t8")
+
+[node name="bodyCollider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.57184)
+shape = SubResource("CapsuleShape3D_l0yls")
+
+[node name="Airplane" parent="." instance=ExtResource("1_qf2qa")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 15)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.69011, -1.32297)
+shape = SubResource("BoxShape3D_fr3fx")

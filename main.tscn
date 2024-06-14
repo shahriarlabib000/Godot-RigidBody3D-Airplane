@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://efqy8dyrbbps"]
+
+[ext_resource type="Texture2D" uid="uid://osh5camwpprb" path="res://icon.svg" id="1_7eku0"]
+[ext_resource type="PackedScene" uid="uid://c4p0rpkt0hybf" path="res://airplane.tscn" id="2_0x51y"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="3_i0gto"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sbaib"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_hedgy"]
+sky_material = SubResource("ProceduralSkyMaterial_sbaib")
+
+[sub_resource type="Environment" id="Environment_gvbw0"]
+background_mode = 2
+sky = SubResource("Sky_hedgy")
+tonemap_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85b8m"]
+albedo_texture = ExtResource("1_7eku0")
+
+[node name="main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gvbw0")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 3.16836, 0)
+light_energy = 0.1
+shadow_enabled = true
+
+[node name="floor" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(1000, 1, 1000)
+material = SubResource("StandardMaterial3D_85b8m")
+
+[node name="Airplane" parent="." instance=ExtResource("2_0x51y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.83715, 0)
+
+[node name="Virtual Joystick" parent="." instance=ExtResource("3_i0gto")]
