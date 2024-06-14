@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://efqy8dyrbbps"]
+[gd_scene load_steps=9 format=3 uid="uid://efqy8dyrbbps"]
 
+[ext_resource type="Script" path="res://main.gd" id="1_0cugb"]
 [ext_resource type="Texture2D" uid="uid://osh5camwpprb" path="res://icon.svg" id="1_7eku0"]
 [ext_resource type="PackedScene" uid="uid://c4p0rpkt0hybf" path="res://airplane.tscn" id="2_0x51y"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="3_i0gto"]
@@ -20,6 +21,7 @@ tonemap_mode = 2
 albedo_texture = ExtResource("1_7eku0")
 
 [node name="main" type="Node3D"]
+script = ExtResource("1_0cugb")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_gvbw0")
@@ -37,4 +39,45 @@ material = SubResource("StandardMaterial3D_85b8m")
 [node name="Airplane" parent="." instance=ExtResource("2_0x51y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.83715, 0)
 
-[node name="Virtual Joystick" parent="." instance=ExtResource("3_i0gto")]
+[node name="ui" type="Node2D" parent="."]
+
+[node name="Virtual Joystick" parent="ui" instance=ExtResource("3_i0gto")]
+offset_top = 340.0
+offset_bottom = 640.0
+
+[node name="Button" type="Button" parent="ui"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1277.0
+offset_top = 405.0
+offset_right = 1512.0
+offset_bottom = 564.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+text = "thrust"
+
+[node name="Camera2D" type="Camera2D" parent="ui"]
+position = Vector2(800, 360)
+
+[node name="Button2" type="Button" parent="ui"]
+offset_left = 777.0
+offset_top = 36.0
+offset_right = 921.0
+offset_bottom = 153.0
+text = "camera"
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.00111, 0)
+
+[connection signal="pressed" from="ui/Button" to="Airplane" method="_on_button_pressed"]
+[connection signal="pressed" from="ui/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -12,8 +12,8 @@ size = Vector3(4.5, 1, 7)
 
 [node name="Airplane" type="RigidBody3D"]
 gravity_scale = 0.0
-linear_damp = 0.5
-angular_damp = 1.0
+linear_damp = 1.0
+angular_damp = 10.0
 script = ExtResource("1_8g6t8")
 
 [node name="bodyCollider" type="CollisionShape3D" parent="."]
@@ -23,9 +23,11 @@ shape = SubResource("CapsuleShape3D_l0yls")
 [node name="Airplane" parent="." instance=ExtResource("1_qf2qa")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 15)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.69011, -1.32297)
 shape = SubResource("BoxShape3D_fr3fx")
+
+[node name="camMount" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="camMount"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 15)
