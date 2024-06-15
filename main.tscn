@@ -50,6 +50,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.83715, 0)
 [node name="Virtual Joystick" parent="ui" instance=ExtResource("3_i0gto")]
 offset_top = 340.0
 offset_bottom = 640.0
+action_left = "roll_left"
+action_right = "roll_right"
 
 [node name="Button" type="Button" parent="ui"]
 anchors_preset = 3
@@ -78,13 +80,6 @@ offset_right = 921.0
 offset_bottom = 153.0
 text = "camera"
 
-[node name="rollRight" type="TouchScreenButton" parent="ui"]
-position = Vector2(1363, 177)
-scale = Vector2(0.789062, 0.820312)
-texture_normal = ExtResource("1_7eku0")
-texture_pressed = ExtResource("1_7eku0")
-action = "roll_right"
-
 [node name="Control" type="Control" parent="ui"]
 layout_mode = 3
 anchors_preset = 0
@@ -93,12 +88,19 @@ offset_top = 133.0
 offset_right = 1539.0
 offset_bottom = 340.0
 
-[node name="rollLeft" type="TouchScreenButton" parent="ui/Control"]
+[node name="left" type="TouchScreenButton" parent="ui/Control"]
 position = Vector2(24, 40)
 scale = Vector2(0.828125, 0.828125)
 texture_normal = ExtResource("1_7eku0")
 texture_pressed = ExtResource("1_7eku0")
-action = "roll_left"
+action = "ui_left"
+
+[node name="right" type="TouchScreenButton" parent="ui/Control"]
+position = Vector2(154, 44)
+scale = Vector2(0.789062, 0.820312)
+texture_normal = ExtResource("1_7eku0")
+texture_pressed = ExtResource("1_7eku0")
+action = "ui_right"
 
 [node name="Timer" type="Timer" parent="."]
 
