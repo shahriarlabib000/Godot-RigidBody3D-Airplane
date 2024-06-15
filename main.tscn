@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://efqy8dyrbbps"]
+[gd_scene load_steps=11 format=3 uid="uid://efqy8dyrbbps"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_0cugb"]
 [ext_resource type="Texture2D" uid="uid://osh5camwpprb" path="res://icon.svg" id="1_7eku0"]
@@ -19,6 +19,12 @@ tonemap_mode = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85b8m"]
 albedo_texture = ExtResource("1_7eku0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r05ml"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_ldjwk"]
+material = SubResource("StandardMaterial3D_r05ml")
 
 [node name="main" type="Node3D"]
 script = ExtResource("1_0cugb")
@@ -72,13 +78,6 @@ offset_right = 921.0
 offset_bottom = 153.0
 text = "camera"
 
-[node name="rollLeft" type="TouchScreenButton" parent="ui"]
-position = Vector2(1233, 173)
-scale = Vector2(0.828125, 0.828125)
-texture_normal = ExtResource("1_7eku0")
-texture_pressed = ExtResource("1_7eku0")
-action = "roll_left"
-
 [node name="rollRight" type="TouchScreenButton" parent="ui"]
 position = Vector2(1363, 177)
 scale = Vector2(0.789062, 0.820312)
@@ -86,11 +85,29 @@ texture_normal = ExtResource("1_7eku0")
 texture_pressed = ExtResource("1_7eku0")
 action = "roll_right"
 
+[node name="Control" type="Control" parent="ui"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 1209.0
+offset_top = 133.0
+offset_right = 1539.0
+offset_bottom = 340.0
+
+[node name="rollLeft" type="TouchScreenButton" parent="ui/Control"]
+position = Vector2(24, 40)
+scale = Vector2(0.828125, 0.828125)
+texture_normal = ExtResource("1_7eku0")
+texture_pressed = ExtResource("1_7eku0")
+action = "roll_left"
+
 [node name="Timer" type="Timer" parent="."]
-autostart = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.00111, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("PrismMesh_ldjwk")
 
 [connection signal="pressed" from="ui/Button" to="Airplane" method="_on_button_pressed"]
 [connection signal="pressed" from="ui/Button2" to="." method="_on_button_2_pressed"]

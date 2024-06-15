@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4p0rpkt0hybf"]
+[gd_scene load_steps=10 format=3 uid="uid://c4p0rpkt0hybf"]
 
 [ext_resource type="Script" path="res://airplane.gd" id="1_8g6t8"]
 [ext_resource type="PackedScene" uid="uid://b4fm4p0fmllgd" path="res://Airplane.glb" id="1_qf2qa"]
+[ext_resource type="Script" path="res://cam_mount.gd" id="3_abnb0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_l0yls"]
 radius = 1.5
@@ -10,10 +11,34 @@ height = 15.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_fr3fx"]
 size = Vector3(4.5, 1, 7)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_246an"]
+shading_mode = 0
+albedo_color = Color(1, 1, 0, 1)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_if2pb"]
+material = SubResource("StandardMaterial3D_246an")
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h4em7"]
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 1)
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_qsja1"]
+material = SubResource("StandardMaterial3D_h4em7")
+size = Vector2(0.5, 0.5)
+
 [node name="Airplane" type="RigidBody3D"]
 gravity_scale = 0.0
-linear_damp = 1.0
-angular_damp = 10.0
+linear_damp = 3.0
+angular_damp = 3.0
 script = ExtResource("1_8g6t8")
 
 [node name="bodyCollider" type="CollisionShape3D" parent="."]
@@ -28,6 +53,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.69011, -1.32297)
 shape = SubResource("BoxShape3D_fr3fx")
 
 [node name="camMount" type="Node3D" parent="."]
+script = ExtResource("3_abnb0")
 
 [node name="Camera3D" type="Camera3D" parent="camMount"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 15)
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.75192, -0.47121, 3.49557)
+amount = 100
+lifetime = 5.0
+mesh = SubResource("QuadMesh_if2pb")
+gravity = Vector3(0, 0, 0)
+
+[node name="CPUParticles3D2" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.752, -0.471, 3.496)
+amount = 100
+lifetime = 5.0
+mesh = SubResource("QuadMesh_qsja1")
+gravity = Vector3(0, 0, 0)
