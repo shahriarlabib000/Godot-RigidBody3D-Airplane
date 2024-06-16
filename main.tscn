@@ -102,8 +102,6 @@ texture_normal = ExtResource("1_7eku0")
 texture_pressed = ExtResource("1_7eku0")
 action = "ui_right"
 
-[node name="Timer" type="Timer" parent="."]
-
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.00111, 0)
 
@@ -113,4 +111,3 @@ mesh = SubResource("PrismMesh_ldjwk")
 
 [connection signal="pressed" from="ui/Button" to="Airplane" method="_on_button_pressed"]
 [connection signal="pressed" from="ui/Button2" to="." method="_on_button_2_pressed"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

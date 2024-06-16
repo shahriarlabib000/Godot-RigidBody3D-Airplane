@@ -4,7 +4,7 @@ var thrust=true
 @onready var button:Button=$/root/main/ui/Button
 func _integrate_forces(_state: PhysicsDirectBodyState3D) -> void:
 	if thrust:
-		apply_central_force(-basis.z * 50)
+		apply_central_force(-basis.z * 80)
 	
 func _physics_process(_delta: float) -> void:
 	#$camMount.global_position=global_position
